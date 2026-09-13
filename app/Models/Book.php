@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\BookCopy;
 
 class Book extends Model
 {
@@ -14,7 +13,8 @@ class Book extends Model
         'isbn',
     ];
 
-    public function copies(){
+    public function copies()
+    {
         return $this->hasMany(BookCopy::class);
     }
 }

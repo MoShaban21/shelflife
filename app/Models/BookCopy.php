@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Book;
-use App\Models\Loan;
 
 class BookCopy extends Model
 {
@@ -13,10 +11,13 @@ class BookCopy extends Model
         'copy_number',
     ];
 
-    public function book(){
+    public function book()
+    {
         return $this->belongsTo(Book::class);
     }
-    public function loans(){
+
+    public function loans()
+    {
         return $this->hasMany(Loan::class);
     }
 }

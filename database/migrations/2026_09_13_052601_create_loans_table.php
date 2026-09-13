@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('book_copy_id')->constrained('book_copies')->restrictOnDelete();
             $table->dateTime('borrowed_at');
             $table->date('due_date');
-            $table->date('returned_at')->nullable();
+            $table->dateTime('returned_at')->nullable();
             $table->index('user_id');
             $table->index('book_copy_id');
             $table->timestamps();

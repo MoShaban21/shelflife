@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\BookCopy;
+
 class Loan extends Model
 {
     protected $fillable = [
@@ -15,10 +14,19 @@ class Loan extends Model
         'returned_at',
     ];
 
-    public function user(){
+    protected $casts = [
+        'borrowed_at' => 'datetime',
+        'due_date' => 'date',
+        'returned_at' => 'datetime',
+    ];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    public function bookCopy(){
+
+    public function bookCopy()
+    {
         return $this->belongsTo(BookCopy::class);
     }
 }
