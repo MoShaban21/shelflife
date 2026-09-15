@@ -14,7 +14,7 @@ class LibrarianSeeder extends Seeder
     {
         User::create([
             'name' => 'Mostafa Shaban',
-            'email' => 'mostafa@seeder.gmail',
+            'email' => 'mostafa@gmail.com',
             'phone' => '01028098345',
             'password' => '12345678',
             'role' => 'librarian',
