@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @can('viewAny', App\Models\Book::class)
+                    <x-nav-link :href="route('librarian.books.index')" :active="request()->routeIs('librarian.books.index')">
+                        {{ __('Manage Books') }}
+                    </x-nav-link>
+                    @endcan
+                    
                 </div>
             </div>
 
