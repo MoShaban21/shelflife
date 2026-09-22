@@ -32,4 +32,5 @@ Route::middleware(['auth'])->prefix('member')->name('member.')->group(function (
     Route::post('/books/{book}/borrow', [MemberBookController::class, 'borrow'])->name('books.borrow');
 });
 
+
 require __DIR__.'/auth.php';
