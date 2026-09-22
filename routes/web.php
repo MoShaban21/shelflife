@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Librarian\BookController;
+use App\Http\Controllers\Member\BookController as MemberBookController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,11 @@ Route::middleware(['auth'])->prefix('librarian')->name('librarian.')->group(func
 
     Route::post('/books/{book}/copies', [BookController::class, 'storeCopy'])->name('books.copies.store');
 });
+
+Route::middleware(['auth'])->prefix('member')->name('member.')->group(function () {
+    Route::get('/books', [MemberBookController::class, 'index'])->name('books.index');
+    Route::post('/books/{book}/borrow', [MemberBookController::class, 'borrow'])->name('books.borrow');
+});
+
 
 require __DIR__.'/auth.php';

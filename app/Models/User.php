@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Loan::class);
     }
+
+    public function hasOverdueLoans(): bool
+    {
+        return $this->loans()->whereNull('returned_at')->where('due_date', '<', now())->exists();
+    }
 }

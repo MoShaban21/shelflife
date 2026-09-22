@@ -17,4 +17,9 @@ class Book extends Model
     {
         return $this->hasMany(BookCopy::class);
     }
+
+    public function availableCopy()
+    {
+        return $this->copies()->available()->first();
+    }
 }
