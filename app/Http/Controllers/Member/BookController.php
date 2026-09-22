@@ -12,9 +12,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::withCount(['copies as available_copies_count' => function ($query) {
-            $query->whereDoesntHave('loans', function ($q) {
-                $q->whereNull('returned_at');
-            });
+            $query->available();
         }])->latest()->get();
 
         return view('member.books.index', compact('books'));

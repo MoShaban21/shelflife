@@ -20,8 +20,6 @@ class Book extends Model
 
     public function availableCopy()
     {
-        return $this->copies()->whereDoesntHave('loans', function ($query) {
-            $query->whereNull('returned_at');
-        })->first();
+        return $this->copies()->available()->first();
     }
 }
