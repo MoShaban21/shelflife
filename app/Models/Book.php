@@ -17,4 +17,11 @@ class Book extends Model
     {
         return $this->hasMany(BookCopy::class);
     }
+
+    public function availableCopy()
+    {
+        return $this->copies()->whereDoesntHave('loans', function ($query) {
+            $query->whereNull('returned_at');
+        })->first();
+    }
 }
