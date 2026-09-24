@@ -12,7 +12,7 @@ class LoanPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->role === 'librarian';
     }
 
     /**
@@ -34,9 +34,9 @@ class LoanPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Loan $loan): bool
+    public function update(User $user): bool
     {
-        return false;
+        return $user->role === 'librarian';
     }
 
     /**
