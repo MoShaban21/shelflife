@@ -60,7 +60,7 @@
                                 </td>
 
                                 <td class="px-4 py-2">
-                                    <form action={{ route('librarian.loans.return', $loan) }} method="POST">
+                                    <form action="{{ route('librarian.loans.return', $loan) }}" method="POST">
                                         @csrf
                                         <button
                                             type="submit"

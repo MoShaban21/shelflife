@@ -34,7 +34,7 @@ class LoanPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user): bool
+    public function update(User $user, Loan $loan): bool
     {
         return $user->role === 'librarian';
     }

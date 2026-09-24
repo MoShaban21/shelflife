@@ -10,7 +10,7 @@ class LoanController extends Controller
 {
     public function index()
     {
-        $this->authorize('update', Loan::class);
+        $this->authorize('viewAny', Loan::class);
 
         $loans = Loan::active()
             ->with(['user', 'bookCopy.book'])
