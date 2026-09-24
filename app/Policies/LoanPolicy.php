@@ -12,7 +12,7 @@ class LoanPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->role === 'librarian';
     }
 
     /**
@@ -36,7 +36,7 @@ class LoanPolicy
      */
     public function update(User $user, Loan $loan): bool
     {
-        return false;
+        return $user->role === 'librarian';
     }
 
     /**

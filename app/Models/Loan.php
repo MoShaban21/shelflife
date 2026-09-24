@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Loan extends Model
@@ -28,5 +29,18 @@ class Loan extends Model
     public function bookCopy()
     {
         return $this->belongsTo(BookCopy::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->whereNull('returned_at');
+    }
+
+    public function isOverdue(): Attribute
+    {
+        return Attribute::get(
+            fn() =>
+            is_null($this->returned_at) && $this->due_date < now()
+        );
     }
 }
