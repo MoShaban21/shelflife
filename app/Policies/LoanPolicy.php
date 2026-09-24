@@ -20,7 +20,7 @@ class LoanPolicy
      */
     public function view(User $user, Loan $loan): bool
     {
-        return false;
+        return $user->id === $loan->user_id;
     }
 
     /**
