@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth'])->prefix('librarian')->name('librarian.')->group(function () {
+Route::middleware(['auth', 'role:librarian'])->prefix('librarian')->name('librarian.')->group(function () {
     Route::get('/books', [BookController::class, 'index'])->name('books.index');
     Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
     Route::post('/books', [BookController::class, 'store'])->name('books.store');
@@ -32,7 +32,7 @@ Route::middleware(['auth'])->prefix('librarian')->name('librarian.')->group(func
     Route::post('/loans/{loan}/return', [LoanController::class, 'returnBook'])->name('loans.return');
 });
 
-Route::middleware(['auth'])->prefix('member')->name('member.')->group(function () {
+Route::middleware(['auth', 'role:member'])->prefix('member')->name('member.')->group(function () {
     Route::get('/books', [MemberBookController::class, 'index'])->name('books.index');
     Route::post('/books/{book}/borrow', [MemberBookController::class, 'borrow'])->name('books.borrow');
 

@@ -9,10 +9,6 @@ class LoanController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->user()->role !== 'member') {
-            abort(403);
-        }
-
         $loans = $request->user()
             ->loans()
             ->with(['bookCopy.book'])
