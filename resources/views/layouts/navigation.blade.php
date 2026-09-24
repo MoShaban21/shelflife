@@ -30,6 +30,12 @@
 ') }}
                     </x-nav-link>
                     @endcan
+                    @if (auth()->user()?->role==='member')                    
+                    <x-nav-link :href="route('member.loans.index')" :active="request()->routeIs('member.loans.index')">
+                        {{ __('My Loans
+') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 

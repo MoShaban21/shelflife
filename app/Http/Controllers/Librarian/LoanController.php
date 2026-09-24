@@ -17,7 +17,6 @@ class LoanController extends Controller
             ->latest()
             ->get();
 
-
         return view('librarian.loans.index', compact('loans'));
     }
 
