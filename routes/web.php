@@ -28,7 +28,6 @@ Route::middleware(['auth', 'role:librarian'])->prefix('librarian')->name('librar
 
     Route::post('/books/{book}/copies', [BookController::class, 'storeCopy'])->name('books.copies.store');
 
-
     Route::get('/loans', [LoanController::class, 'index'])->name('loans.index');
     Route::post('/loans/{loan}/return', [LoanController::class, 'returnBook'])->name('loans.return');
 });
@@ -39,6 +38,5 @@ Route::middleware(['auth', 'role:member'])->prefix('member')->name('member.')->g
 
     Route::get('/loans', [MemberLoanController::class, 'index'])->name('loans.index');
 });
-
 
 require __DIR__.'/auth.php';
