@@ -25,4 +25,16 @@ class Book extends Model
     {
         return $this->copies()->available()->first();
     }
+
+    public function scopeSearch($query, ?string $term)
+    {
+        if (! $term) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($term) {
+            $q->where('title', 'like', '%'.$term.'%')
+                ->orWhere('author', 'like', '%'.$term.'%');
+        });
+    }
 }
