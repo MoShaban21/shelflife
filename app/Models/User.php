@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function hasOverdueLoans(): bool
     {
-        return $this->loans()->whereNull('returned_at')->where('due_date', '<', now())->exists();
+        return $this->loans()->overdue()->exists();
     }
 }
