@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Loan extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
         'book_copy_id',
@@ -38,8 +41,6 @@ class Loan extends Model
 
     public function isOverdue(): Attribute
     {
-        return Attribute::get(
-
-        );
+        return Attribute::get(fn () => is_null($this->returned_at) && $this->due_date < now());
     }
 }
