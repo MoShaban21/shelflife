@@ -27,8 +27,8 @@
                     type="text"
                     class="block w-full"
                     placeholder="Search by title or author..."
-                    :value="old('q', $search)" />
-                <x-primary-button type="">
+                    :value=$search />
+                <x-primary-button type="submit">
                     Search
                 </x-primary-button>
             </form>
