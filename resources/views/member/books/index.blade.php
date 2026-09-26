@@ -21,6 +21,18 @@
             </div>
             @endsession
 
+            <form method="GET" action="{{ route('member.books.index') }}" class="mb-4 flex gap-2">
+                <x-text-input
+                    name="q"
+                    type="text"
+                    class="block w-full"
+                    placeholder="Search by title or author..."
+                    :value=$search />
+                <x-primary-button type="submit">
+                    Search
+                </x-primary-button>
+            </form>
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
@@ -79,7 +91,11 @@
                             @empty
                             <tr>
                                 <td colspan="4" class="px-4 py-4 text-center text-gray-500">
+                                    @if($search)
+                                    No books found for "{{ $search }}".
+                                    @else
                                     No books available.
+                                    @endif
                                 </td>
                             </tr>
                             @endforelse

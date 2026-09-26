@@ -9,13 +9,15 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::withCount(['copies as available_copies_count' => function ($query) {
-            $query->available();
-        }])->latest()->get();
+        $search = $request->query('q');
+        $books = Book::search($search)
+            ->withCount(['copies as available_copies_count' => function ($query) {
+                $query->available();
+            }])->latest()->get();
 
-        return view('member.books.index', compact('books'));
+        return view('member.books.index', compact('books', 'search'));
     }
 
     public function borrow(Request $request, Book $book)
