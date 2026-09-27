@@ -32,3 +32,19 @@ it('returns a token with valid credentials and allows access to /api/user', func
 it('rejects protected endpoint without a token', function () {
     $this->getJson('/api/user')->assertUnauthorized();
 });
+
+it('rejects invalid credentials', function () {
+    $user = User::factory()->create([
+        'email' => 'member@example.com',
+        'password' => 'password',
+        'role' => 'member',
+    ]);
+
+    $this->postJson(
+        '/api/login',
+        [
+            'email' => 'member@example.com',
+            'password' => 'wrong-password',
+        ]
+    )->assertStatus(422);
+});
