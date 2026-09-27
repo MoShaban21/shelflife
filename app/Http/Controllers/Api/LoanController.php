@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 
 class LoanController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $loans = $request->user()
-        ->loans()
-        ->with('bookCopy.book')
-        ->latest()
-        ->get();
+            ->loans()
+            ->with('bookCopy.book')
+            ->latest()
+            ->get();
 
         return LoanResource::collection($loans);
     }

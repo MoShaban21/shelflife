@@ -23,7 +23,7 @@ it('returns a token with valid credentials and allows access to /api/user', func
 
     $token = $loginResponse->json('token');
 
-    $this->withHeader('Authorization', 'Bearer ' . $token)
+    $this->withHeader('Authorization', 'Bearer '.$token)
         ->getJson('/api/user')
         ->assertOk()
         ->assertJsonPath('email', 'member@example.com');

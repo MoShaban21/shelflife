@@ -24,7 +24,7 @@ it('returns books with available copy counts for an authenticated user', functio
 
     $token = $user->createToken('api_token')->plainTextToken;
 
-    $this->withHeader('Authorization', 'Bearer ' . $token)
+    $this->withHeader('Authorization', 'Bearer '.$token)
         ->getJson('/api/books')
         ->assertOk()
         ->assertJsonFragment([

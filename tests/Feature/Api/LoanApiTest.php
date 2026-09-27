@@ -16,9 +16,8 @@ it('returns only the authenticated member loans', function () {
     $copy = BookCopy::factory()->create(['book_id' => $book->id, 'copy_number' => 1]);
     $otherCopy = BookCopy::factory()->create([
         'book_id' => Book::factory()->create()->id,
-        'copy_number' => 1
+        'copy_number' => 1,
     ]);
-
 
     Loan::factory()->create([
         'user_id' => $member->id,
@@ -32,12 +31,12 @@ it('returns only the authenticated member loans', function () {
 
     $token = $member->createToken('api-token')->plainTextToken;
 
-    $response = $this->withHeader('Authorization', 'Bearer ' . $token)
+    $response = $this->withHeader('Authorization', 'Bearer '.$token)
         ->getJson('/api/loans')
         ->assertOk();
 
     $response->assertJsonCount(1, 'data');
     $response->assertJsonFragment([
-        'book_title' => 'Domain-Driven Design'
+        'book_title' => 'Domain-Driven Design',
     ]);
 });
