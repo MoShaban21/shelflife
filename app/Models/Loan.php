@@ -43,6 +43,7 @@ class Loan extends Model
     {
         return Attribute::get(fn () => is_null($this->returned_at) && $this->due_date < now());
     }
+
     public function scopeOverdue($query)
     {
         return $query
