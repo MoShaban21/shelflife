@@ -50,18 +50,4 @@ class Loan extends Model
             ->whereNull('returned_at')
             ->where('due_date', '<', now());
     }
-
-    public function scopeOverdue($query)
-    {
-        return $query
-            ->whereNull('returned_at')
-            ->where('due_date', '<', now());
-    }
-
-    public function scopeOverdue($query)
-    {
-        return $query
-            ->whereNull('returned_at')
-            ->where('due_date', '<', now());
-    }
 }
