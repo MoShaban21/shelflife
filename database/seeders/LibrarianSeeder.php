@@ -12,12 +12,14 @@ class LibrarianSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Mostafa Shaban',
-            'email' => 'mostafa@gmail.com',
-            'phone' => '01028098345',
-            'password' => '12345678',
-            'role' => 'librarian',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@shelflife.test'],
+            [
+                'name' => 'Library Admin',
+                'phone' => '01000000000',
+                'password' => 'password',
+                'role' => 'librarian',
+            ]
+        );
     }
 }

@@ -1,47 +1,76 @@
 # ShelfLife
 
-A library management and book borrowing system.
+A library book-loan management system built with Laravel.
 
-## Installation
+Members can browse and borrow books, view their loan history, and search the catalog.  
+Librarians can manage books/copies and process returns.  
+The project also exposes a token-authenticated JSON API.
 
-1. Install PHP dependencies:
+## Tech Stack
+
+- Laravel
+- Blade + Breeze (auth)
+- MySQL
+- Laravel Sanctum (API tokens)
+- Pest (tests)
+- Laravel Pint (code style)
+
+## Features
+
+- Role-based access (`member` / `librarian`)
+- Book and physical copy management
+- Borrowing with business rules:
+  - no borrow if no available copies
+  - no borrow if member has overdue loans
+- Librarian return flow
+- Member loan history
+- Book search (title/author)
+- JSON API:
+  - `POST /api/login`
+  - `GET /api/user`
+  - `GET /api/books`
+  - `GET /api/loans`
+- Automated feature tests for core borrowing rules and API auth
+
+## Setup
 
 ```bash
+git clone <your-repo-url>
+cd shelflife
 composer install
-```
-
-2. Create your environment file:
-
-```bash
 cp .env.example .env
-```
-
-On Windows PowerShell, you can also use:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-3. Generate the application key:
-
-```bash
 php artisan key:generate
-```
-
-4. Configure your database in the `.env` file.
-
-5. Run the database migrations:
-
-```bash
-php artisan migrate
-```
-
-6. Start the Laravel development server:
-
-```bash
+Update database settings in .env, then:
+Bashphp artisan migrate --seed
 php artisan serve
-```
+App URL: http://127.0.0.1:8000
+Demo credentials
+Librarian (seeded):
 
-The application will then be available at:
+Email: admin@shelflife.test
+Password: password
 
-`http://127.0.0.1:8000`
+Test/demo credentials only. Not for production use.
+Members can register normally from /register.
+Tests
+Run the full suite:
+Bashphp artisan test
+API quick start
+
+Login:
+
+BashPOST /api/login
+{
+  "email": "member@example.com",
+  "password": "password"
+}
+
+Use the returned token:
+
+textAuthorization: Bearer {token}
+
+Example endpoints:
+
+
+GET /api/books
+GET /api/loans
