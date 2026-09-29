@@ -103,3 +103,6 @@ Authorization: Bearer {token}
 GET /api/books
 GET /api/loans
 ```
+## Deployment
+
+Deployed with Wasmer.
